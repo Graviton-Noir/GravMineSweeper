@@ -13,7 +13,7 @@ hs_err_pid*
 
 # Android
 
-*gradle*
-.idea/
+# *gradle*
+#.idea/
 # NOT SURE ABOUT THAT *.iml
-local.properties
+#local.properties

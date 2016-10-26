@@ -18,7 +18,7 @@ public class GameManager {
         
     }
 
-    private void newGame() {
+    public void newGame() {
 
     }
 }

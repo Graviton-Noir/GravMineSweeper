@@ -1,6 +1,9 @@
 package demineur.gravitonnoir.demineur.view;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
@@ -17,7 +20,7 @@ public class GameView extends View {
     private float mScaleFactor = 1.f;
 
     private void initAttr(Context context) {
-        mScaleDetector = new ScaleGestureDetector(context, new ScaleListener());
+//        mScaleDetector = new ScaleGestureDetector(context, new ScaleListener());
     }
 
     public GameView(Context context) {
@@ -50,28 +53,42 @@ public class GameView extends View {
             return size;
     }
 
+    @Override protected void onDraw(Canvas canvas) {
+        int width = getWidth();
+        int height = getHeight();
 
-    private class ScaleListener implements ScaleGestureDetector.OnScaleGestureListener {
-        @Override
-        public boolean onScale(ScaleGestureDetector scaleGestureDetector) {
-            mScaleFactor *= scaleGestureDetector.getScaleFactor();
+        Paint rect = new Paint(Paint.ANTI_ALIAS_FLAG);
+        rect.setColor(Color.BLUE);
 
-            // Permet d'avoir une limite de zoom in and zoom out
-            mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 5.0f));
+        setBackgroundColor(Color.BLACK);
 
-            invalidate();
-
-            return true;
-        }
-
-        @Override
-        public boolean onScaleBegin(ScaleGestureDetector scaleGestureDetector) {
-            return false;
-        }
-
-        @Override
-        public void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
-
-        }
+        canvas.drawRect(width / 2 - 5, height / 2 - 5, width / 2 + 5, height / 2 + 5, rect);
     }
+
+
+
+
+//    private class ScaleListener implements ScaleGestureDetector.OnScaleGestureListener {
+//        @Override
+//        public boolean onScale(ScaleGestureDetector scaleGestureDetector) {
+//            mScaleFactor *= scaleGestureDetector.getScaleFactor();
+//
+//            // Permet d'avoir une limite de zoom in and zoom out
+//            mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 5.0f));
+//
+//            invalidate();
+//
+//            return true;
+//        }
+//
+//        @Override
+//        public boolean onScaleBegin(ScaleGestureDetector scaleGestureDetector) {
+//            return false;
+//        }
+//
+//        @Override
+//        public void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
+//
+//        }
+//    }
 }
